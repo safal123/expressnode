@@ -1,0 +1,28 @@
+<%- include('../template/header')-%>
+    <div class="container p-1">
+        <div class="mx-auto rounded mb-1">
+            <div class="text-left">
+                <h1 class="p-1">Blog Articles</h1>
+            </div>
+        </div>
+        <!-- <a href="/articles/new" class="btn btn-success">New Article</a> -->
+        <% articles.forEach( article =>{ %>
+            <div class="card mt-4">
+                <div class="card-body">
+                   <div class="d-flex align-items-center">
+                        <h4 class="card-title"><%= article.title %></h4>
+                        <div class="card-subtitle text-muted mb-2 ml-auto">
+                            <%= article.createdAt.toLocaleDateString() %>
+                        </div>
+                   </div>
+                    <div class="card-text mb-2"><%= article.description %></div>
+                    <a href="/articles/<%= article.slug %>" class="btn btn-info">Read More</a>
+                    <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+                        <button href="" class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+            <%= %>
+        <%}) %>
+    </div>
+<%- include('../template/footer')-%>
