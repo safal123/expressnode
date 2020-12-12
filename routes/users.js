@@ -11,21 +11,28 @@ router.get('/register', (req, res) => {
 })
 
 // Post register form
-router.post('/register', async (req, res) => {
+router.post('/register', (req, res) => {
     const { name, email, username, password, confirm_password } = req.body;
     let errors = userFormValidation(req, password);
     if (errors) {
         res.render('users/register', { errors, user:  req.body });
     } else {
         let user = new User({name, email, username, password});
-        bcryptPassword(user);
-        try {
-            await user.save();
-            res.redirect('/');
-        } catch (err) {
-            console.log(err);
-            res.render('users/register', { errors });
-        }
+        bcrypt.genSalt(10, (_err, salt) => {
+            bcrypt.hash(user.password, salt, (err, hash) => {
+                if (err) {
+                    console.log(err);
+                }
+                user.password = hash;
+                try {
+                    user.save();
+                    res.redirect('/');
+                } catch (err) {
+                    console.log(err);
+                    res.render('users/register', { errors });
+                }
+            });
+        });
     }
 })
 
@@ -44,14 +51,7 @@ module.exports = router
 
 // Password hash
 function bcryptPassword(user) {
-    bcrypt.genSalt(10, (_err, salt) => {
-        bcrypt.hash(user.password, salt, (err, hash) => {
-            if (err) {
-                console.log(err);
-            }
-            user.password = hash;
-        });
-    });
+    
 }
 
 // Vlaidate User form
