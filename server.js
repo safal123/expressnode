@@ -9,7 +9,7 @@ const methodOverride = require('method-override');
 const Article = require('./models/article');
 
 const app = express();
-mongoose.connect('mongodb://localhost/blog',
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/blog',
     { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
 // Set the view engine
