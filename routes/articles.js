@@ -14,9 +14,9 @@ router.get('/edit/:id', async(req, res) => {
     if (!article) {
         res.redirect('/');
     }
-    if (article.author !== req.user._id) {
+    if (article.author != req.user._id) {
         req.flash('danger', 'Unauthorised.')
-        res.redirect('/');
+        return res.redirect('/');
     }
     res.render('articles/edit', { article });
 });
