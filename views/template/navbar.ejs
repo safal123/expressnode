@@ -6,20 +6,33 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <a class="navbar-brand" href="/">Blog Home</a>
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="/articles/new">New Article</a>
-                </li>
-            </ul>
-            <div class="ml-autl">
+            <% if (user) { %>
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/users/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/users/register">Register</a>
+                        <a class="nav-link" href="/articles/new">New Article</a>
                     </li>
                 </ul>
+            <% } %> 
+            <div class="ml-auto">
+                <% if (!user) { %>
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users/login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users/register">Register</a>
+                        </li>
+                    </ul>
+                <% } else { %>
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users/logout">Logout</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Welcome, <%= user.name.toUpperCase()  %> </a>
+                        </li>
+                    </ul>
+                <% }%>
             </div>
         </div>
     </div>

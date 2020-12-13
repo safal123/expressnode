@@ -1,4 +1,3 @@
-<%- include('../template/header')-%>
 <div class="container p-1">
     <h1 class="mb-4">Create new account</h1>
 
@@ -18,7 +17,6 @@
                 type="text" 
                 name="name" 
                 id="name" 
-                value="<%= user.name %>"
                 class="form-control">
             <p></p>
                 
@@ -29,7 +27,6 @@
                 type="text" 
                 name="username" 
                 id="username" 
-                value="<%= user.username %>"
                 class="form-control">
             </div>
         <div class="form-group">
@@ -38,7 +35,6 @@
                 type="email" 
                 name="email" 
                 id="email" 
-                value="<%= user.email %>"
                 class="form-control">
         </div>
         <div class="form-group">
@@ -53,5 +49,3 @@
         <a href="/" type="submit" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
-
-<%- include('../template/footer')-%>

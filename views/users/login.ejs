@@ -1,32 +1,32 @@
-<%- include('../template/header')-%>
 <div class="container p-1">
-    <h1 class="mb-4">Create new account</h1>
-
+    <h1 class="mb-4">Please log in.</h1>
     <%if (errors) {%>
-    <%errors.forEach(function(error){%>
-    <div class="">
-        <span class="text-danger"><%= error.msg %></span>
-    </div>
-    <%})%>
+        <%errors.forEach(function(error){%>
+            <div class="">
+                <span class="text-danger"><%= error.msg %></span>
+            </div>
+        <%})%>
     <% } %>
-
-
     <form method="POST" action="/users/login">
         <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email">Username</label>
             <input 
-                type="email" 
-                name="email" 
+                type="text" 
+                name="username" 
                 id="email" 
                 class="form-control">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="form-control">
+            <input 
+                type="password" 
+                name="password" 
+                id="password" 
+                class="form-control">
         </div>
         <button type="submit" class="btn btn-info">Login</button>
         <a href="/" type="submit" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
 
-<%- include('../template/footer')-%>
+

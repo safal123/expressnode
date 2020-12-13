@@ -1,11 +1,19 @@
-<%- include('../template/header')-%>
-    <div class="container p-1">
-        <h1 class="mb-1"><%= article.title %></h1>
-        <div class="text-muted mb-2"><%= article.createdAt.toLocaleDateString() %></div>
-        <a href="/" class="btn btn-secondary">All Articles</a>
-        <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
-        <div>
-            <%- article.sanitizedHtml %>
-        </div>
+<div class="container p-1">
+    <h1 class="mb-1"><%= article.title %></h1>
+    <div class="text-muted mb-2">
+        <%= article.createdAt.toLocaleDateString() %>
+        <span class="text-danger">By: <%= author.name  %></span>
     </div>
-<%- include('../template/footer')-%>
+    <a href="/" class="btn btn-secondary">All Articles</a>
+    
+    <% if (user) { %>
+        <% if (user._id == article.author) { %>
+            <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+        <% } %>
+    <% } %>
+    
+    <div>
+        <%- article.sanitizedHtml %>
+    </div>
+</div>
+
